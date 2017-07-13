@@ -8,12 +8,21 @@ class ListItem extends Component {
   render() {
     return(
       <li key={this.props.item.id}>
+        <span>
+          <img src={this.props.item.album.images[2].url} />
+        </span>
+        <span>
           {this.props.item.type},
+        </span>
+        <span>
           {this.props.item.name},
-        <audio controls>
-          <source src={this.props.item.preview_url} type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
+        </span>
+        <span>
+          <audio controls>
+            <source src={this.props.item.preview_url} type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </span>
       </li>
     );
   }
