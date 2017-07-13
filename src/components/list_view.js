@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import ListItem from './list_item';
+import ListHeader from './list_header';
 
 class ListView extends Component {
   constructor(props) {
@@ -14,13 +15,14 @@ class ListView extends Component {
 
     const list = this.props.list.map((item) => {
       return (
-        <ListItem key={item.id} item={item} />
+          <ListItem key={item.id} item={item} />
       );
     });
 
     return (
       <div>
         <ul>
+          <ListHeader />
           {list}
         </ul>
       </div>
