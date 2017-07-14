@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 
 import SearchBar from './search_bar';
 import ListView from './list_view';
+import ItemDetail from './item_detail';
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
     this.searchRequest = this.searchRequest.bind(this);
+    this.filterResults = this.filterResults.bind(this);
+    this.selectItem = this.selectItem.bind(this);
+
     this.state = {
       term: '',
-      results: []
+      results: [],
+      filter: '',
+      selectedItem: ''
     };
   }
 
@@ -33,7 +39,7 @@ export default class App extends Component {
 
   searchRequest(term) {
     const URL = `https://api.spotify.com/v1/search?q=${term}&type=track`;
-    const AUTH_TOKEN = 'Bearer BQBNDrgh7bjwAXdZDE88-TiNX4llo1BQFJCeOgd2auWEqI9AS8Hk3bQPDPbU2C-n6NiH6-LpSq_fOMhSDjMSeEJEgnaXsOhv4KjtveQYBQDR8MUpeQzKvRRZPGtOLbMAXcPvmZd573m2lDBjvcaRb1mp98hDwxFAwfmEt9DaJFU6yRqdc6Q';
+    const AUTH_TOKEN = 'Bearer BQDEltKabtT51jYW8wAFsdViQ3ya7Er7IhsEW_s2aN4jA3SEx8mN0Tvaf9m2vPkY0m1kZwLn0x_4SgvMlts7Y3A3YIeZ6g-KhzHs8m2I0tvCKpt0d8ZBUTjb06Vl9O3duHIUA72kNayfPO9JZujqskkV6QE6yA9EDinfipXtyp_AOniwsoE';
 
     fetch(URL, {
       method: 'GET',
@@ -48,18 +54,31 @@ export default class App extends Component {
       if (response && response.tracks) {
         this.setState({results: response.tracks.items});
       }
+    });
+  }
 
+  filterResults(type, order) {
+    const sorted = this.state.results.sort((a, b) => {
+      order === 'ASC' ? a[type] - b[type] : b[type] - a[type];
     });
 
+    this.setState({results: sorted});
+  }
+
+  selectItem(item) {
+    this.setState({selectedItem: item});
   }
 
   render() {
     return (
       <div>
         <div>Reactify</div>
-        <SearchBar onSearchInput={this.searchRequest}/>
-        <ListView list={this.state.results}/>
+        <SearchBar onSearchInput={this.searchRequest} onFilter={this.filterResults} />
+        <ItemDetail selectedItem={this.state.selectedItem} />
+        <ListView onSelectItem={this.selectItem} list={this.state.results}/>
       </div>
     );
   }
 }
+
+export default App;

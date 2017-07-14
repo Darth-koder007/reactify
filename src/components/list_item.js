@@ -3,11 +3,17 @@ import React, { Component } from 'react';
 class ListItem extends Component {
   constructor(props) {
     super(props);
+
+    this.selectItem = this.selectItem.bind(this);
+  }
+
+  selectItem() {
+    this.props.onSelectItem(this.props.item);
   }
 
   render() {
     return(
-      <li key={this.props.item.id}>
+      <li key={this.props.item.id} onClick={this.selectItem}>
         <span>
           <img src={this.props.item.album.images[2].url} />
         </span>
