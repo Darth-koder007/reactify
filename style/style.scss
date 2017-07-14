@@ -69,3 +69,38 @@ strong {
 img, iframe, video, object {
   max-width: 100%;
 }
+
+/***************
+Modular Styles
+***************/
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.clear {
+  clear: both;
+}
+.bold {
+  font-weight: bold;
+}
+.hidden,
+.hide {
+  display: none;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.text-centered {
+  text-align: center;
+}
