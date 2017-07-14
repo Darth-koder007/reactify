@@ -104,3 +104,30 @@ Modular Styles
 .text-centered {
   text-align: center;
 }
+
+/***********
+custom
+***********/
+.container {
+  margin: 50px auto;
+
+  .app {
+    .header {
+      text-align: center;
+    }
+
+    .search-bar {
+      text-align: center;
+
+      .search-field {
+        input {
+          width: 80%;
+        }
+      }
+
+      .search-filter {
+
+      }
+    }
+  }
+}

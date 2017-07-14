@@ -71,8 +71,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <div>Reactify</div>
+      <div className="app">
+        <div className="header">Reactify</div>
         <SearchBar onSearchInput={this.searchRequest} onFilter={this.filterResults} />
         <ItemDetail selectedItem={this.state.selectedItem} />
         <ListView onSelectItem={this.selectItem} list={this.state.results}/>

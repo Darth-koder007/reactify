@@ -20,10 +20,14 @@ class SearchBar extends Component {
     let sortOrder = ASC;
 
     return (
-      <div>
-        <input type="text" onChange={this.searchTerm} />
-        <span onClick={()=> this.props.onFilter('popularity')}>Popularity<i className={sortOrder}></i></span>
-        <span onClick={()=> this.props.onFilter('name')}>Name<i className={sortOrder}></i></span>
+      <div className="search-bar">
+        <div className="search-field">
+          <input type="text" onChange={this.searchTerm} />
+        </div>
+        <div className="search-filter">
+          <span onClick={()=> this.props.onFilter('popularity')}>Popularity<i className={sortOrder}></i></span>
+          <span onClick={()=> this.props.onFilter('name')}>Name<i className={sortOrder}></i></span>
+        </div>
       </div>
     );
   }
