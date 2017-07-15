@@ -1,10 +1,23 @@
+/**
+ * React component import
+ */
 import React, { Component } from 'react';
 
+/**
+ * Custom component import
+ */
 import SearchBar from './search_bar';
 import ListView from './list_view';
 import ItemDetail from './item_detail';
 
+/**
+ * App class
+ */
 class App extends Component {
+  /**
+   * App constructor
+   * @param  {Object} props [description]
+   */
   constructor(props) {
     super(props);
 
@@ -12,6 +25,7 @@ class App extends Component {
     this.filterResults = this.filterResults.bind(this);
     this.selectItem = this.selectItem.bind(this);
 
+    // Initialize state
     this.state = {
       term: '',
       results: [],
@@ -21,6 +35,10 @@ class App extends Component {
     };
   }
 
+  /**
+   * componentWillMount lifecycle callback
+   * Asyncronous call is made to spotify server to get auth token
+   */
   componentWillMount() {
       const REFRESH_TOKEN = 'AQCo-tf2_-1SIPcJm06vDO-tPv7FaEWQIHbYwXRSLuicEVf2Eg4UMCxD-YhJOZNoDvigr3HTdB6pqmWR3ozkIrSG3jjdTf9z8DlbjdCFTEugJVcoYNHxnhR4Xb0HwKAsc2I';
       const URL = `${window.location.href}spotify-server/refresh_token?refresh_token=${REFRESH_TOKEN}`;
@@ -35,6 +53,10 @@ class App extends Component {
       });
   }
 
+  /**
+   * Initiate search request and update state
+   * @param  {String} term [search term]
+   */
   searchRequest(term) {
     const URL = `https://api.spotify.com/v1/search?q=${term}&type=track`;
 
@@ -54,6 +76,11 @@ class App extends Component {
     });
   }
 
+  /**
+   * filter serch results
+   * @param  {String} type  [supported name and Popularity]
+   * @param  {[type]} order [supported asc or desc]
+   */
   filterResults(type, order) {
     const sorted = this.state.results.sort((a, b) => {
       order === 'ASC' ? a[type] - b[type] : b[type] - a[type];
@@ -62,10 +89,17 @@ class App extends Component {
     this.setState({results: sorted});
   }
 
+  /**
+   * select item from list
+   * @param  {Object} item
+   */
   selectItem(item) {
     this.setState({selectedItem: item});
   }
 
+  /**
+   * render component
+   */
   render() {
     return (
       <div className="wrapper">

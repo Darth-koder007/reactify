@@ -1,12 +1,28 @@
+/**
+ * React component import
+ */
 import React, { Component } from 'react';
 
+/**
+ * Custom component import
+ */
 import ListItem from './list_item';
 
+/**
+ * ListView class
+ */
 class ListView extends Component {
+  /**
+   * ListView constructor
+   * @param  {object} props
+   */
   constructor(props) {
     super(props);
   }
 
+  /**
+   * render component
+   */
   render() {
     if(this.props.list.length < 1) {
       return (
