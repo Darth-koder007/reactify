@@ -29,12 +29,11 @@ class App extends Component {
         method: 'GET'
       })
       .then((response) => {
-        return response.json();
-      })
-      .then((res) => {
-        this.setState({auth_code: 'Bearer' + res.access_token});
+        console.log("response", response);
+        return response.json().then((res) => {
+          this.setState({auth_code: 'Bearer' + res.access_token});
+        });
       });
-
   }
 
   searchRequest(term) {
