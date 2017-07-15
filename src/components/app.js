@@ -101,6 +101,18 @@ class App extends Component {
    * render component
    */
   render() {
+    if(this.state.auth_code === '') {
+      return(
+        <div className="spinner">
+          <div className="rect1"></div>
+          <div className="rect2"></div>
+          <div className="rect3"></div>
+          <div className="rect4"></div>
+          <div className="rect5"></div>
+        </div>
+      );
+    }
+
     return (
       <div className="wrapper">
         <div className="header">Reactify</div>
