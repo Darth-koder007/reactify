@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    const AUTH_TOKEN = await this.getAccessToken();
+    const AUTH_TOKEN = 'Bearer ' + await this.getAccessToken();
     this.setState({auth_code: AUTH_TOKEN});
   }
 
@@ -33,7 +33,6 @@ class App extends Component {
       method: 'GET'
     })
     .then((response) => {
-      console.log(response);
       return response.json();
     });
   }
