@@ -29,7 +29,7 @@ class App extends Component {
         method: 'GET'
       })
       .then((response) => {
-        response.json();
+        return response.json();
       })
       .then((res) => {
         this.setState({auth_code: 'Bearer' + res.access_token});
