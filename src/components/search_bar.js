@@ -24,7 +24,8 @@ class SearchBar extends Component {
         <div className="search-field">
           <input type="text" onChange={this.searchTerm} />
         </div>
-        <div className="search-filter">
+        <div className="search-filter grouping">
+          <span>Sort By: </span>
           <span onClick={()=> this.props.onFilter('popularity')}>Popularity<i className={sortOrder}></i></span>
           <span onClick={()=> this.props.onFilter('name')}>Name<i className={sortOrder}></i></span>
         </div>

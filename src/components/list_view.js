@@ -19,8 +19,8 @@ class ListView extends Component {
     });
 
     return (
-      <div>
-        <ul>
+      <div className="list-view">
+        <ul className="list">
           {list}
         </ul>
       </div>

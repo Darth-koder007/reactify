@@ -39,7 +39,7 @@ class App extends Component {
 
   searchRequest(term) {
     const URL = `https://api.spotify.com/v1/search?q=${term}&type=track`;
-    const AUTH_TOKEN = 'Bearer BQDEltKabtT51jYW8wAFsdViQ3ya7Er7IhsEW_s2aN4jA3SEx8mN0Tvaf9m2vPkY0m1kZwLn0x_4SgvMlts7Y3A3YIeZ6g-KhzHs8m2I0tvCKpt0d8ZBUTjb06Vl9O3duHIUA72kNayfPO9JZujqskkV6QE6yA9EDinfipXtyp_AOniwsoE';
+    const AUTH_TOKEN = 'Bearer BQD8ULQ-KynErTx2nIWtBoQvX89ALKz8Ye2X57dtbUcGxtjSNjL6he435ZCk6QkhflDfz_MNAD3SwZTqO8j4eFpQ_u3yHxaqGEaWLgUb8WsCM4hOiEXZW5_xfWpT8d62EKkZA3N9Fr47wpp4CFS0HaKz3Rd9UDIRFHNalyoj55YiYe7EwuY';
 
     fetch(URL, {
       method: 'GET',
