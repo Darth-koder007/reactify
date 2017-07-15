@@ -1,6 +1,6 @@
 {
   "name": "reactify",
-  "version": "1.0.3",
+  "version": "1.0.1",
   "description": "Simple clone of spotify in react",
   "main": "index.js",
   "repository": "git@github.com:Darth-koder007/reactify.git",
