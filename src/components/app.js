@@ -30,8 +30,7 @@ class App extends Component {
       })
       .then((response) => {
         return response.json().then((res) => {
-          console.log("res", res);
-          this.setState({auth_code: 'Bearer' + res.access_token});
+          this.setState({auth_code: 'Bearer ' + res.access_token});
         });
       });
   }
