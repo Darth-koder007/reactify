@@ -28,7 +28,7 @@ class App extends Component {
 
   getAccessToken() {
     const REFRESH_TOKEN = 'AQCo-tf2_-1SIPcJm06vDO-tPv7FaEWQIHbYwXRSLuicEVf2Eg4UMCxD-YhJOZNoDvigr3HTdB6pqmWR3ozkIrSG3jjdTf9z8DlbjdCFTEugJVcoYNHxnhR4Xb0HwKAsc2I';
-    const URL = `http://localhost:3001/refresh_token?refresh_token=${REFRESH_TOKEN}`;
+    const URL = `${window.location.href}spotify-server/refresh_token?refresh_token=${REFRESH_TOKEN}`;
     fetch(URL, {
       method: 'GET'
     })
@@ -45,7 +45,7 @@ class App extends Component {
     fetch(URL, {
       method: 'GET',
       headers: new Headers({
-        'Authorization': this.state.auth_code
+        'Authorization': this.state.auth_code;
       })
     })
     .then((response) => {
