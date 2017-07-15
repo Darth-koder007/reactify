@@ -45,7 +45,7 @@ class App extends Component {
     fetch(URL, {
       method: 'GET',
       headers: new Headers({
-        'Authorization': this.state.auth_code;
+        'Authorization': this.state.auth_code
       })
     })
     .then((response) => {
