@@ -9,7 +9,7 @@
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "build:prod": "node ./node_modules/webpack/bin/webpack.js -p",
-    "serve:prod": "forever ./node_modules/http-server/bin/http-server dist --cors -p 8001"
+    "serve:prod": "forever start ./node_modules/http-server/bin/http-server dist --cors -p 8001"
   },
   "author": "",
   "license": "ISC",
