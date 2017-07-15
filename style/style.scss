@@ -109,65 +109,68 @@ Modular Styles
 custom
 ***********/
 .container {
-  max-width:960px;
-  width: 90%;
-  margin: 0 auto;
-
-  .app {
+  .wrapper {
     .header {
       text-align: center;
       font-size: 24px;
       border-bottom: 1px solid #d4d4d4;
       padding: 10px 0px;
       margin: 5px auto;
+      width: 100%;
     }
 
-    .search-bar {
-      text-align: center;
-      margin: 15px auto;
+    .app {
+      max-width:960px;
+      width: 90%;
+      margin: 0 auto;
 
-      .search-field {
-        padding: 5px 0px;
+      .search-bar {
+        text-align: center;
+        margin: 15px auto;
 
-        input {
-          width: 91.6%;  //880/960
-        }
-      }
+        .search-field {
+          padding: 5px 0px;
 
-      .search-filter {
-        padding: 5px 0px;
-
-        span {
-          float: left;
-          width: 33.33%;
-        }
-      }
-    }
-
-    .item-detail {
-      text-align: center;
-      margin: 15px auto;
-
-      img, span {
-        display: block;
-        margin: 0 auto;
-        padding: 2px 0px;
-      }
-    }
-
-    .list-view {
-      margin: 15px auto;
-
-      .list {
-        .list-item {
-          margin: 5px auto;
-
-          img {
-            float: left;
-            padding-right: 10px;
+          input {
+            width: 91.6%;  //880/960
           }
+        }
+
+        .search-filter {
+          padding: 5px 0px;
+
           span {
-            display: block;
+            float: left;
+            width: 33.33%;
+          }
+        }
+      }
+
+      .item-detail {
+        text-align: center;
+        margin: 15px auto;
+
+        img, span {
+          display: block;
+          margin: 0 auto;
+          padding: 2px 0px;
+        }
+      }
+
+      .list-view {
+        margin: 15px auto;
+
+        .list {
+          .list-item {
+            margin: 5px auto;
+
+            img {
+              float: left;
+              padding-right: 10px;
+            }
+            span {
+              display: block;
+            }
           }
         }
       }
