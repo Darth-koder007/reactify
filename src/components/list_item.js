@@ -28,12 +28,6 @@ class ListItem extends Component {
         <span>
           Duration: {this.millisToMinutesAndSeconds(this.props.item.duration_ms)}
         </span>
-        {/* <span>
-          <audio controls>
-            <source src={this.props.item.preview_url} type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </span> */}
       </li>
     );
   }

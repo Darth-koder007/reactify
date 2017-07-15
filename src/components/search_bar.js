@@ -5,14 +5,30 @@ class SearchBar extends Component {
     super(props);
 
     this.searchTerm = this.searchTerm.bind(this);
+    this.debounce = this.debounce.bind(this);
     this.state = {term: ''};
   }
 
   searchTerm(event) {
     let val = event.target.value;
     this.setState({term: val});
-    this.props.onSearchInput(this.state.term);
+    this.debounce(this.props.onSearchInput(this.state.term), 1000);
   }
+
+  debounce(func, wait, immediate) {
+  	let timeout;
+  	return () => {
+  		const args = arguments;
+  		const later = function() {
+  			timeout = null;
+  			if (!immediate) func.apply(this, args);
+  		};
+  		const callNow = immediate && !timeout;
+  		clearTimeout(timeout);
+  		timeout = setTimeout(later, wait);
+  		if (callNow) func.apply(this, args);
+  	};
+  };
 
   render() {
     const ASC = 'icon-sort-alt-up';
@@ -22,7 +38,8 @@ class SearchBar extends Component {
     return (
       <div className="search-bar">
         <div className="search-field">
-          <input type="text" onChange={this.searchTerm} />
+          <input type="text" placeholder="Search" onChange={this.searchTerm} />
+          <i className="icon-search"></i>
         </div>
         <div className="search-filter grouping">
           <span>Sort By: </span>
