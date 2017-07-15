@@ -59,21 +59,27 @@ class App extends Component {
    */
   searchRequest(term) {
     const URL = `https://api.spotify.com/v1/search?q=${term}&type=track`;
-
-    fetch(URL, {
-      method: 'GET',
-      headers: new Headers({
-        'Authorization': this.state.auth_code
-      })
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then((response) => {
-      if (response && response.tracks) {
-        this.setState({results: response.tracks.items});
-      }
+    this.setState({
+      results: [],
+      selectedItem: ''
     });
+
+    if(term) {
+      fetch(URL, {
+        method: 'GET',
+        headers: new Headers({
+          'Authorization': this.state.auth_code
+        })
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        if (response && response.tracks) {
+          this.setState({results: response.tracks.items});
+        }
+      });
+    }
   }
 
   /**

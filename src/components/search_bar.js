@@ -27,8 +27,9 @@ class SearchBar extends Component {
    */
   searchTerm(event) {
     const val = event.target.value;
+
     this.setState({term: val});
-    this.debounce(this.props.onSearchInput(this.state.term), 1000);
+    this.debounce(() => this.props.onSearchInput(this.state.term), 1000)();
   }
 
   /**
