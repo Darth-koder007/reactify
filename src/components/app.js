@@ -11,6 +11,7 @@ class App extends Component {
     this.searchRequest = this.searchRequest.bind(this);
     this.filterResults = this.filterResults.bind(this);
     this.selectItem = this.selectItem.bind(this);
+    this.getAccessToken = this.getAccessToken.bind(this);
 
     this.state = {
       term: '',
@@ -21,20 +22,21 @@ class App extends Component {
     };
   }
 
-  async componentWillMount() {
-    const AUTH_TOKEN = 'Bearer ' + await this.getAccessToken();
-    this.setState({auth_code: AUTH_TOKEN});
+  componentWillMount() {
+    this.getAccessToken()
+      .then((res) => {
+        console.log("res", res);
+        this.setState({auth_code: 'Bearer' + AUTH_TOKEN.access_token});
+      });
   }
 
   getAccessToken() {
     const REFRESH_TOKEN = 'AQCo-tf2_-1SIPcJm06vDO-tPv7FaEWQIHbYwXRSLuicEVf2Eg4UMCxD-YhJOZNoDvigr3HTdB6pqmWR3ozkIrSG3jjdTf9z8DlbjdCFTEugJVcoYNHxnhR4Xb0HwKAsc2I';
-    const URL = `${window.location.href}spotify-server/refresh_token?refresh_token=${REFRESH_TOKEN}`;
+    const URL = `{window.location.href}spotify-server/refresh_token?refresh_token=${REFRESH_TOKEN}`;
     fetch(URL, {
       method: 'GET'
     })
-    .then((response) => {
-      return response.json();
-    });
+    .then((response) => response.json());
   }
 
   searchRequest(term) {
