@@ -39,7 +39,7 @@ class App extends Component {
 
   searchRequest(term) {
     const URL = `https://api.spotify.com/v1/search?q=${term}&type=track`;
-    const AUTH_TOKEN = 'Bearer BQDEltKabtT51jYW8wAFsdViQ3ya7Er7IhsEW_s2aN4jA3SEx8mN0Tvaf9m2vPkY0m1kZwLn0x_4SgvMlts7Y3A3YIeZ6g-KhzHs8m2I0tvCKpt0d8ZBUTjb06Vl9O3duHIUA72kNayfPO9JZujqskkV6QE6yA9EDinfipXtyp_AOniwsoE';
+    const AUTH_TOKEN = 'Bearer BQDWrGMZaowbuKgjiYcZezP3QzUh78Yjo7Axty_Ad_k6CnWjMP3lWDMf69N__tMtYYurNl417HARaXd0oxqYlzfdS2GluB55Fv-xYFaTiENOicecR4PgImEzLtH84ydH9384mr9UF_XYeemZzjeHvY6qvqV_yqvAKGPpGBzwDy7a5H90V5o';
 
     fetch(URL, {
       method: 'GET',
@@ -71,11 +71,13 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <div>Reactify</div>
-        <SearchBar onSearchInput={this.searchRequest} onFilter={this.filterResults} />
-        <ItemDetail selectedItem={this.state.selectedItem} />
-        <ListView onSelectItem={this.selectItem} list={this.state.results}/>
+      <div className="wrapper">
+        <div className="header">Reactify</div>
+        <div className="app">
+          <SearchBar onSearchInput={this.searchRequest} onFilter={this.filterResults} />
+          <ItemDetail selectedItem={this.state.selectedItem} />
+          <ListView onSelectItem={this.selectItem} list={this.state.results}/>
+        </div>
       </div>
     );
   }
