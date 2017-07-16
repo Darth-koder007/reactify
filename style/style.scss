@@ -179,10 +179,15 @@ html, body {
       text-transform: uppercase;
       text-align: center;
       font-size: 40px;
-      padding: 10px 0px;
+      padding: 10px 0;
       width: 100%;
-      background-color: #B71C1C;
-      color: white;
+      background-color: #b71c1c;
+      color: #fff;
+      position: fixed;
+      float: left;
+      top: 0;
+      z-index: 1;
+      box-shadow: 0px 2px 2px 0px #b71c1c;
     }
 
     .app {
