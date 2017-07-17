@@ -10,13 +10,16 @@ import SearchBar from './search_bar';
 import ListView from './list_view';
 import ItemDetail from './item_detail';
 
+const REFRESH_TOKEN = 'AQCo-tf2_-1SIPcJm06vDO-tPv7FaEWQIHbYwXRSLuicEVf2Eg4UMCxD-YhJOZNoDvigr3HTdB6pqmWR3ozkIrSG3jjdTf9z8DlbjdCFTEugJVcoYNHxnhR4Xb0HwKAsc2I';
+const URL = `${window.location.href}spotify-server/refresh_token?refresh_token=${REFRESH_TOKEN}`;
+
 /**
  * App class
  */
 class App extends Component {
   /**
    * App constructor
-   * @param  {Object} props [description]
+   * @param  {Object} props
    */
   constructor(props) {
     super(props);
@@ -24,6 +27,7 @@ class App extends Component {
     this.searchRequest = this.searchRequest.bind(this);
     this.filterResults = this.filterResults.bind(this);
     this.selectItem = this.selectItem.bind(this);
+    this.getAccessToken = this.getAccessToken.bind(this);
 
     // Initialize state
     this.state = {
@@ -36,22 +40,30 @@ class App extends Component {
   }
 
   /**
-   * componentWillMount lifecycle callback
+   * componentDidMount lifecycle callback
    * Asyncronous call is made to spotify server to get auth token
    */
-  componentWillMount() {
-      const REFRESH_TOKEN = 'AQCo-tf2_-1SIPcJm06vDO-tPv7FaEWQIHbYwXRSLuicEVf2Eg4UMCxD-YhJOZNoDvigr3HTdB6pqmWR3ozkIrSG3jjdTf9z8DlbjdCFTEugJVcoYNHxnhR4Xb0HwKAsc2I';
-      const URL = `${window.location.href}spotify-server/refresh_token?refresh_token=${REFRESH_TOKEN}`;
-
-      fetch(URL, {
-        method: 'GET'
-      })
-      .then((response) => {
-        return response.json().then((res) => {
-          this.setState({auth_code: 'Bearer ' + res.access_token});
-        });
-      });
+  componentDidMount() {
+    this.getAccessToken()
+    .then((res) => {
+      this.setState({auth_code: 'Bearer ' + res.access_token});
+    });
   }
+
+  /**
+   * getAccessToken retrieve valid auth token from spotify server
+   */
+  getAccessToken() {
+    return fetch(URL, {method: 'GET'})
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+      alert(`Could not get access token from Spotify due to:${err}`);
+    });
+  }
+
 
   /**
    * Initiate search request and update state
@@ -74,7 +86,11 @@ class App extends Component {
       .then((response) => {
         return response.json();
       })
-      .then((response) => {
+      .then(async (response) => {
+        if (response && response.error) {
+          const ACCESS_TOKEN = await this.getAccessToken();
+          this.setState({'auth_code': ACCESS_TOKEN.access_token});
+        }
         if (response && response.tracks) {
           this.setState({results: response.tracks.items});
         }
@@ -85,7 +101,7 @@ class App extends Component {
   /**
    * filter serch results
    * @param  {String} type  [supported name and Popularity]
-   * @param  {[type]} order [supported asc or desc]
+   * @param  {String} order [supported asc or desc]
    */
   filterResults(type, order) {
     const sorted = this.state.results.sort((a, b) => {
